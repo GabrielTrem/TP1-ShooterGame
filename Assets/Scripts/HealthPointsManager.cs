@@ -28,7 +28,7 @@ public class HealthPointsManager : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "Alien" && !isInvincible)
+        if (hit.gameObject.CompareTag("Alien") && !isInvincible)
         {
             LoseHealthPoint();
         }
