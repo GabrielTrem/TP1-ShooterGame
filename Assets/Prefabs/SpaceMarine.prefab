@@ -1445,6 +1445,7 @@ GameObject:
   - component: {fileID: 6645189917941025413}
   - component: {fileID: 3865741238905520254}
   - component: {fileID: 4973406063865190832}
+  - component: {fileID: 3428935617222930805}
   m_Layer: 7
   m_Name: Cylinder.001
   m_TagString: Untagged
@@ -1521,6 +1522,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3428935617222930805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679049788685627823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f298181f4204d846b14d31611f4e5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regularBulletPrefab: {fileID: 0}
+  missilePrefab: {fileID: 2525046337550401708, guid: a786bd07750c5384f844eaf9aa93f6b5,
+    type: 3}
 --- !u!1 &1995862287712718869
 GameObject:
   m_ObjectHideFlags: 0
