@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318700ed66420b6489ffa46b221fafdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healingCollectiblePrefab: {fileID: 6319660280540615819, guid: 2ef37418cfb962cd8bca74555d24c6d6,
+    type: 3}
+  missileCollectiblePrefab: {fileID: 7171504067025027473, guid: 72bb4530bfcf4f85caa83e860f084754,
+    type: 3}
+  tripleShotCollectiblePrefab: {fileID: 105092, guid: 941d6224549424c91b1cf112b44ec0cb,
+    type: 3}
+  dropRate: 15

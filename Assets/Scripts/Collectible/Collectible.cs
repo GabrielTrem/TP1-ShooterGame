@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public enum collectibleType {HEALING, MISSILE, TRIPLE_SHOT};
+    public enum collectibleType {HEALTH, AMMO, SHOOTING_BOOST};
     [SerializeField] collectibleType type;
-    [SerializeField] float lifeTime = 15;
+    [SerializeField] float lifetime = 15;
     private float timeLeftBeforeDespawn;
     void Awake()
     {
-        timeLeftBeforeDespawn = lifeTime;
+        timeLeftBeforeDespawn = lifetime;
     }
 
     void OnEnable()
     {
-        timeLeftBeforeDespawn = lifeTime;   
+        timeLeftBeforeDespawn = lifetime;   
     }
 
     void Update()
     {
         timeLeftBeforeDespawn -= Time.deltaTime;
-        gameObject.transform.Rotate(Vector3.right, Time.deltaTime);
-        if(timeLeftBeforeDespawn <= 0)
+        gameObject.transform.Rotate(Vector3.up * 180f * Time.deltaTime);
+        if (timeLeftBeforeDespawn <= 0)
         {
             gameObject.SetActive(false);
         }

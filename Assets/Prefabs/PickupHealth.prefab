@@ -439,6 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6699140894155902513}
+  - component: {fileID: 4808723618068351964}
   m_Layer: 0
   m_Name: PickupHealth
   m_TagString: Untagged
@@ -466,3 +467,17 @@ Transform:
   - {fileID: 1798825291920316469}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4808723618068351964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319660280540615819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e786ea70bdae047afcebd2ca9efd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  lifeTime: 15
