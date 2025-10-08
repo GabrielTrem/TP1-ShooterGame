@@ -18,6 +18,7 @@ public class ProjectileManager : MonoBehaviour
 
     private bool bulletMode;
     private bool missileMode;
+    private int nbOfMissiles;
 
     private float timeLeftBeforeCanShoot;
 
@@ -28,6 +29,7 @@ public class ProjectileManager : MonoBehaviour
     {
         bulletMode = false;
         missileMode = true;
+        nbOfMissiles = 2;
         timeLeftBeforeCanShoot = 0;
         bullets = new List<GameObject>();
         missiles = new List<GameObject>();
@@ -81,13 +83,14 @@ public class ProjectileManager : MonoBehaviour
                 bullet.GetComponent<Rigidbody>().AddForce(transform.forward * BULLET_SPEED, ForceMode.Impulse);
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
-            else
+            else if(missileMode && nbOfMissiles > 0)
             {
                 GameObject missile = GetAvailableMissile();
                 missile.transform.position = transform.position;
                 missile.transform.rotation = transform.rotation;
                 missile.SetActive(true);
                 missile.GetComponent<Rigidbody>().AddForce(transform.forward * BULLET_SPEED, ForceMode.Impulse);
+                nbOfMissiles--;
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
             }
         }

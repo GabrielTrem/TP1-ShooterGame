@@ -794,6 +794,7 @@ GameObject:
   - component: {fileID: 1809969608412419181}
   - component: {fileID: 4442832392600964648}
   - component: {fileID: 6939256232251524499}
+  - component: {fileID: 981298407677099697}
   m_Layer: 7
   m_Name: SpaceMarine
   m_TagString: Untagged
@@ -857,6 +858,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   speed: 20
+--- !u!136 &981298407677099697
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102188228426766853}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.14
+  m_Height: 10.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.4, z: 0}
 --- !u!1 &1182651417351162269
 GameObject:
   m_ObjectHideFlags: 0
