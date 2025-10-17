@@ -34,10 +34,23 @@ public class HealthPointsManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Alien"))
+        {
+
+        }
+    }
+
     public void LoseHealthPoint()
     {
         currentHealthPoints--;
         isInvincible = true;
         invincibilityPeriodTimeLeft = invincibilityPeriod;
+    }
+
+    public void GainHealthPoint()
+    {
+        currentHealthPoints++;
     }
 }

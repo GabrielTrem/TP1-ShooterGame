@@ -96,9 +96,10 @@ GameObject:
   m_Component:
   - component: {fileID: 474840}
   - component: {fileID: 3087556427392594742}
+  - component: {fileID: 4942069578535997504}
   m_Layer: 0
   m_Name: ShootBoostPickup
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +134,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   lifetime: 15
+--- !u!65 &4942069578535997504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.9, y: 6.16, z: 1.97}
+  m_Center: {x: 0, y: 4.72, z: 0}
 --- !u!1 &106108
 GameObject:
   m_ObjectHideFlags: 0

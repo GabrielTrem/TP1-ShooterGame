@@ -18,17 +18,20 @@ public class ProjectileManager : MonoBehaviour
 
     private bool bulletMode;
     private bool missileMode;
+    private bool tripleShotMode;
     private int nbOfMissiles;
 
     private float timeLeftBeforeCanShoot;
+    private float timeLeftInTripleShotMode;
 
     private InputAction shootAction;
     private InputAction switchAmmoModeAction;
 
     private void Awake()
     {
-        bulletMode = false;
-        missileMode = true;
+        bulletMode = true;
+        missileMode = false;
+        tripleShotMode = false;
         nbOfMissiles = 2;
         timeLeftBeforeCanShoot = 0;
         bullets = new List<GameObject>();
@@ -67,6 +70,15 @@ public class ProjectileManager : MonoBehaviour
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
             }
         }
+        if(timeLeftInTripleShotMode > 0)
+        {
+            timeLeftInTripleShotMode -= Time.deltaTime;
+        }
+        else
+        {
+            tripleShotMode = false;
+        }
+
         if (timeLeftBeforeCanShoot > 0)
         {
             timeLeftBeforeCanShoot -= Time.deltaTime;
@@ -76,21 +88,17 @@ public class ProjectileManager : MonoBehaviour
         {
             if (bulletMode)
             {
-                GameObject bullet = GetAvailableBullets();
-                bullet.transform.position = transform.position;
-                bullet.transform.rotation = transform.rotation;
-                bullet.SetActive(true);
-                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * BULLET_SPEED, ForceMode.Impulse);
+                ShootProjectile(ProjectileType.BULLET, transform.forward);
+                if (tripleShotMode)
+                {
+                    ShootProjectile(ProjectileType.BULLET, transform.forward * 0.5f + transform.right * 0.5f);
+                    ShootProjectile(ProjectileType.BULLET, transform.forward * 0.5f - transform.right * 0.5f);
+                }
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
             else if(missileMode && nbOfMissiles > 0)
             {
-                GameObject missile = GetAvailableMissile();
-                missile.transform.position = transform.position;
-                missile.transform.rotation = transform.rotation;
-                missile.SetActive(true);
-                missile.GetComponent<Rigidbody>().AddForce(transform.forward * BULLET_SPEED, ForceMode.Impulse);
-                nbOfMissiles--;
+                ShootProjectile(ProjectileType.MISSILE, transform.forward);
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
             }
         }
@@ -126,5 +134,35 @@ public class ProjectileManager : MonoBehaviour
         return newMissile;
     }
 
+    public void GainMissiles(int missilesGained)
+    {
+        nbOfMissiles += missilesGained;
+    }
 
+    public void ActivateTripleShotMode(float amountOfTime)
+    {
+        tripleShotMode = true;
+        timeLeftInTripleShotMode = amountOfTime;
+    }
+
+    public void ShootProjectile(ProjectileType type, Vector3 direction)
+    {
+        if(type == ProjectileType.BULLET)
+        {
+            GameObject bullet = GetAvailableBullets();
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody>().AddForce(direction * BULLET_SPEED, ForceMode.Impulse);
+        }
+        else if(type == ProjectileType.MISSILE)
+        {
+            GameObject missile = GetAvailableMissile();
+            missile.transform.position = transform.position;
+            missile.transform.rotation = transform.rotation;
+            missile.SetActive(true);
+            missile.GetComponent<Rigidbody>().AddForce(direction * BULLET_SPEED, ForceMode.Impulse);
+            nbOfMissiles--;
+        }
+    }
 }

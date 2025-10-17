@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public enum collectibleType {HEALTH, AMMO, SHOOTING_BOOST};
-    [SerializeField] collectibleType type;
+    [SerializeField] CollectibleType type;
     [SerializeField] float lifetime = 15;
     private float timeLeftBeforeDespawn;
     void Awake()
@@ -26,7 +25,7 @@ public class Collectible : MonoBehaviour
         }
     }
 
-    public collectibleType GetCollectibleType()
+    public CollectibleType GetCollectibleType()
     {
         return type;
     }
