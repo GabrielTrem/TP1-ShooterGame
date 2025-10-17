@@ -38,7 +38,7 @@ public class HealthPointsManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Alien"))
         {
-
+            LoseHealthPoint();
         }
     }
 

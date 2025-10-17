@@ -9,7 +9,7 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private GameObject missilePrefab;
     const int NUMBER_OF_BULLETS = 100;
     const int NUMBER_OF_MISSILES = 100;
-    const float TIME_BETWEEN_BULLETS = 0.25f;
+    const float TIME_BETWEEN_BULLETS = 0.15f;
     const float TIME_BETWEEN_MISSILES = 1.0f;
     const int BULLET_SPEED = 100;
 
@@ -91,8 +91,8 @@ public class ProjectileManager : MonoBehaviour
                 ShootProjectile(ProjectileType.BULLET, transform.forward);
                 if (tripleShotMode)
                 {
-                    ShootProjectile(ProjectileType.BULLET, transform.forward * 0.5f + transform.right * 0.5f);
-                    ShootProjectile(ProjectileType.BULLET, transform.forward * 0.5f - transform.right * 0.5f);
+                    ShootProjectile(ProjectileType.BULLET, transform.forward + transform.right * 0.5f);
+                    ShootProjectile(ProjectileType.BULLET, transform.forward - transform.right * 0.5f);
                 }
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
