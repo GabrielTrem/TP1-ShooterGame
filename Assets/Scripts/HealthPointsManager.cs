@@ -30,17 +30,18 @@ public class HealthPointsManager : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Alien") && !isInvincible)
+        if (hit.gameObject.CompareTag("Alien"))
         {
-            LoseHealthPoint();
-        }
-    }
+            AlienController alienController = hit.gameObject.GetComponent<AlienController>();
+            if (alienController != null)
+            {
+                alienController.Die();
+            }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !isInvincible)
-        {
-            LoseHealthPoint();
+            if (!isInvincible)
+            {
+                LoseHealthPoint();
+            }
         }
     }
 
