@@ -4,86 +4,35 @@ using UnityEngine.AI;
 
 public class AlienController : MonoBehaviour
 {
-    [SerializeField] private int pointsDeVie = 1;
-
     private NavMeshAgent navMeshAgent;
-    private Rigidbody rigidBody;
-    private Actor actorScript;
 
     void Start()
     {
- 
         navMeshAgent = GetComponent<NavMeshAgent>();
-        rigidBody = GetComponent<Rigidbody>();
-        actorScript = GetComponent<Actor>();
     }
 
- 
     void OnEnable()
     {
- 
-        pointsDeVie = 1;
-
- 
-        if (navMeshAgent != null)
-            navMeshAgent.enabled = false;
-
-        // Désactiver temporairement le script Actor
-        if (actorScript != null)
-            actorScript.enabled = false;
-
-        // Lancer la descente
-        StartCoroutine(DescendreVersSol());
+        StartCoroutine(MoveDownToGround());
     }
 
-    IEnumerator DescendreVersSol()
+    private IEnumerator MoveDownToGround()
     {
-        // Position au sol (ajuste le Y selon ton plancher)
-        Vector3 positionSol = new Vector3(transform.position.x, 0f, transform.position.z);
+        // Demandé de l'aide à ChatGPT pour ici. (Mathieu)
+        Vector3 positionSol = new Vector3(transform.position.x, -74.47f, transform.position.z);
 
-        // Descente progressive
-        while (Vector3.Distance(transform.position, positionSol) > 0.1f)
+        while (Vector3.Distance(transform.position, positionSol) > 2f)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                positionSol,
-                2f * Time.deltaTime
-            );
-            yield return null; // Attend la prochaine frame
+            transform.position = Vector3.MoveTowards(transform.position, positionSol, 2f * Time.deltaTime);
+            yield return null;
         }
 
-        // Une fois au sol:
-        // 1. Activer le NavMesh
-        if (navMeshAgent != null)
-            navMeshAgent.enabled = true;
-
-        // 2. Activer le script Actor pour qu'il gère la navigation
-        if (actorScript != null)
-            actorScript.enabled = true;
+        navMeshAgent.enabled = true;
+        navMeshAgent.Warp(transform.position);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Die()
     {
-        // Détecter collision avec le joueur (utilise les tags!)
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            pointsDeVie = 0; // Perd tous ses points de vie
-            Mourir();
-        }
-    }
-
-    public void PrendreDegats(int degats)
-    {
-        pointsDeVie -= degats;
-        if (pointsDeVie <= 0)
-            Mourir();
-    }
-
-    private void Mourir()
-    {
-        // Recyclage: désactiver au lieu de Destroy
         gameObject.SetActive(false);
-
-        // Tout sera réinitialisé par OnEnable au prochain spawn
     }
 }

@@ -4,9 +4,11 @@ public class HealthPointsManager : MonoBehaviour
 {
     [SerializeField] private int healthPoints = 5;
     [SerializeField] private float invincibilityPeriod = 0.5f;
+
     private int currentHealthPoints;
     private float invincibilityPeriodTimeLeft;
     private bool isInvincible;
+
     void Awake()
     {
         currentHealthPoints = healthPoints;
@@ -16,7 +18,7 @@ public class HealthPointsManager : MonoBehaviour
 
     private void Update()
     {
-        if(invincibilityPeriodTimeLeft > 0)
+        if (invincibilityPeriodTimeLeft > 0)
         {
             invincibilityPeriodTimeLeft -= Time.deltaTime;
         }
@@ -29,6 +31,14 @@ public class HealthPointsManager : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Alien") && !isInvincible)
+        {
+            LoseHealthPoint();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && !isInvincible)
         {
             LoseHealthPoint();
         }
