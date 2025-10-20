@@ -795,10 +795,11 @@ GameObject:
   - component: {fileID: 4442832392600964648}
   - component: {fileID: 6939256232251524499}
   - component: {fileID: 981298407677099697}
-  - component: {fileID: 3298261251057624121}
+  - component: {fileID: -3980035749645673801}
+  - component: {fileID: 4023354542312874777}
   m_Layer: 7
   m_Name: SpaceMarine
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,11 +879,11 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.14
-  m_Height: 10.9
+  m_Radius: 2.29
+  m_Height: 10.23
   m_Direction: 1
-  m_Center: {x: 0, y: 5.4, z: 0}
---- !u!114 &3298261251057624121
+  m_Center: {x: 0, y: 5.69, z: 0}
+--- !u!114 &-3980035749645673801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -895,7 +896,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 5
-  invincibilityPeriod: 0
+  invincibilityPeriod: 0.5
+--- !u!114 &4023354542312874777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102188228426766853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb2f233e104bfd4a94f73ff624f34c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbOfMissilesGainedFromCollectible: 5
+  amountOfTimeTripleShotCollectible: 10
 --- !u!1 &1182651417351162269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1475,7 @@ GameObject:
   - component: {fileID: 6645189917941025413}
   - component: {fileID: 3865741238905520254}
   - component: {fileID: 4973406063865190832}
+  - component: {fileID: 589719712891646135}
   m_Layer: 7
   m_Name: Cylinder.001
   m_TagString: Untagged
@@ -1536,6 +1552,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &589719712891646135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679049788685627823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f298181f4204d846b14d31611f4e5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regularBulletPrefab: {fileID: 8878293879376123333, guid: 6b3fa57daa022e34cb955f11a7d7339c,
+    type: 3}
+  missilePrefab: {fileID: 2525046337550401708, guid: a786bd07750c5384f844eaf9aa93f6b5,
+    type: 3}
 --- !u!1 &1995862287712718869
 GameObject:
   m_ObjectHideFlags: 0
