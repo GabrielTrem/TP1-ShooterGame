@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 1974080949975172696}
   - component: {fileID: 672445713057619672}
   - component: {fileID: 6896656332319755989}
-  - component: {fileID: -6615595640967972784}
+  - component: {fileID: 6909273296239523919}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Alien
@@ -274,7 +274,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 616056485553046870}
   m_Enabled: 0
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_Radius: 4
   m_Speed: 10
   m_Acceleration: 500
   avoidancePriority: 50
@@ -283,7 +283,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 10
   m_BaseOffset: 1.3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -302,7 +302,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -310,7 +310,7 @@ CapsuleCollider:
   m_Height: 9
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &-6615595640967972784
+--- !u!114 &6909273296239523919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,11 +319,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 616056485553046870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e8444b54118a94d95ab359b610ecc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 089f0a5012978e040aa9dc8782370ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 1
-  invincibilityPeriod: 0
 --- !u!1 &616056485579276216
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,12 +5,10 @@ using UnityEngine.AI;
 public class AlienController : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-    private GameObject player;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void OnEnable()
@@ -30,32 +28,13 @@ public class AlienController : MonoBehaviour
 
         while (Vector3.Distance(transform.position, positionSol) > 2f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, positionSol, 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, positionSol, 10f * Time.deltaTime);
             yield return null;
         }
 
         if (navMeshAgent != null)
         {
             navMeshAgent.enabled = true;
-        }
-    }
-
-    void Update()
-    {
-        if (player != null)
-        {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-
-            if (distance < 6f)
-            {
-                HealthPointsManager healthPointsManager = player.GetComponent<HealthPointsManager>();
-                if (healthPointsManager != null)
-                {
-                    healthPointsManager.LoseHealthPoint();
-                }
-
-                Die();
-            }
         }
     }
 
