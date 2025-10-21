@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public class HealthPointsManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private int healthPoints = 5;
     [SerializeField] private float invincibilityPeriod = 0.5f;
     [SerializeField] private AudioClip hurtSound;
     [SerializeField] private AudioClip deathSound;
+    private CharacterController characterController;
 
     private int currentHealthPoints;
     private float invincibilityPeriodTimeLeft;
@@ -20,7 +23,15 @@ public class HealthPointsManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    void Start()
+    {
+        if (gameManager != null) { 
+            gameManager.UpdateHealthPoints(currentHealthPoints);
+        }
+        characterController = gameObject.GetComponent<CharacterController>();
+    }
+
+    void Update()
     {
         if (invincibilityPeriodTimeLeft > 0)
         {
@@ -30,22 +41,10 @@ public class HealthPointsManager : MonoBehaviour
         {
             isInvincible = false;
         }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("Alien"))
+        if(currentHealthPoints <= 0)
         {
-            AlienController alienController = hit.gameObject.GetComponent<AlienController>();
-            if (alienController != null)
-            {
-                alienController.Die();
-            }
-
-            if (!isInvincible)
-            {
-                LoseHealthPoint();
-            }
+            gameObject.SetActive(false);
+            gameManager.GameOver();
         }
     }
 
@@ -53,7 +52,10 @@ public class HealthPointsManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Alien"))
         {
-            LoseHealthPoint();
+            if (!isInvincible && characterController.isGrounded)
+            {
+                //LoseHealthPoint();
+            }
         }
     }
 
@@ -77,10 +79,12 @@ public class HealthPointsManager : MonoBehaviour
                 audioSource.PlayOneShot(hurtSound, 1.0f);
             }
         }
+        gameManager.UpdateHealthPoints(currentHealthPoints);
     }
 
     public void GainHealthPoint()
     {
         currentHealthPoints++;
+        gameManager.UpdateHealthPoints(currentHealthPoints);
     }
 }
