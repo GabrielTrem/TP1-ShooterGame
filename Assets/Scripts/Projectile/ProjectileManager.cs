@@ -7,6 +7,10 @@ public class ProjectileManager : MonoBehaviour
 {
     [SerializeField] private GameObject regularBulletPrefab;
     [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip tripleShotSound;
+    [SerializeField] private AudioClip missileSound;
+
     const int NUMBER_OF_BULLETS = 100;
     const int NUMBER_OF_MISSILES = 100;
     const float TIME_BETWEEN_BULLETS = 0.15f;
@@ -26,6 +30,7 @@ public class ProjectileManager : MonoBehaviour
 
     private InputAction shootAction;
     private InputAction switchAmmoModeAction;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -37,8 +42,11 @@ public class ProjectileManager : MonoBehaviour
         bullets = new List<GameObject>();
         missiles = new List<GameObject>();
     }
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         for (int i = 0; i < NUMBER_OF_BULLETS; i++)
         {
             GameObject newBullet = Instantiate(regularBulletPrefab, Vector3.zero, Quaternion.identity);
@@ -61,7 +69,7 @@ public class ProjectileManager : MonoBehaviour
         {
             this.bulletMode = !this.bulletMode;
             this.missileMode = !this.missileMode;
-            if(this.bulletMode)
+            if (this.bulletMode)
             {
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
@@ -70,7 +78,7 @@ public class ProjectileManager : MonoBehaviour
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
             }
         }
-        if(timeLeftInTripleShotMode > 0)
+        if (timeLeftInTripleShotMode > 0)
         {
             timeLeftInTripleShotMode -= Time.deltaTime;
         }
@@ -88,16 +96,35 @@ public class ProjectileManager : MonoBehaviour
         {
             if (bulletMode)
             {
-                ShootProjectile(ProjectileType.BULLET, transform.forward);
                 if (tripleShotMode)
                 {
+                    if (audioSource != null && tripleShotSound != null)
+                    {
+                        audioSource.PlayOneShot(tripleShotSound, 1.0f);
+                    }
+
+                    ShootProjectile(ProjectileType.BULLET, transform.forward);
                     ShootProjectile(ProjectileType.BULLET, transform.forward + transform.right * 0.5f);
                     ShootProjectile(ProjectileType.BULLET, transform.forward - transform.right * 0.5f);
                 }
+                else
+                {
+                    if (audioSource != null && shootSound != null)
+                    {
+                        audioSource.PlayOneShot(shootSound, 1.0f);
+                    }
+
+                    ShootProjectile(ProjectileType.BULLET, transform.forward);
+                }
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
-            else if(missileMode && nbOfMissiles > 0)
+            else if (missileMode && nbOfMissiles > 0)
             {
+                if (audioSource != null && missileSound != null)
+                {
+                    audioSource.PlayOneShot(missileSound, 1.0f);
+                }
+
                 ShootProjectile(ProjectileType.MISSILE, transform.forward);
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
             }
@@ -106,7 +133,7 @@ public class ProjectileManager : MonoBehaviour
 
     private GameObject GetAvailableBullets()
     {
-        foreach(GameObject bullet in  bullets)
+        foreach (GameObject bullet in bullets)
         {
             if (!bullet.activeSelf)
             {

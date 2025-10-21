@@ -8,6 +8,8 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] GameObject missileCollectiblePrefab;
     [SerializeField] GameObject tripleShotCollectiblePrefab;
     [SerializeField] int dropRate = 15;
+    [SerializeField] private AudioClip collectibleAppearSound;
+
     const int NB_OF_COLLECTIBLES = 30;
 
     private List<GameObject> healingCollectibles;
@@ -42,7 +44,7 @@ public class CollectibleManager : MonoBehaviour
     public void DropCollectible(Vector3 dropPosition)
     {
         int roll = Random.Range(1, dropRate + 1);
-        if(roll == 1)
+        if (roll == 1)
         {
             GameObject collectible = null;
 
@@ -63,6 +65,11 @@ public class CollectibleManager : MonoBehaviour
 
             collectible.transform.position = dropPosition;
             collectible.SetActive(true);
+
+            if (collectibleAppearSound != null)
+            {
+                AudioSource.PlayClipAtPoint(collectibleAppearSound, dropPosition, 1.0f);
+            }
         }
     }
 

@@ -13,8 +13,7 @@ public class AlienController : MonoBehaviour
 
     void OnEnable()
     {
-        if (navMeshAgent != null)
-        {
+        if (navMeshAgent != null) {
             navMeshAgent.enabled = false;
         }
 
