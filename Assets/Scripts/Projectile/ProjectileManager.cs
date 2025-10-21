@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ProjectileManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject regularBulletPrefab;
     [SerializeField] private GameObject missilePrefab;
     const int NUMBER_OF_BULLETS = 100;
@@ -32,8 +33,9 @@ public class ProjectileManager : MonoBehaviour
         bulletMode = true;
         missileMode = false;
         tripleShotMode = false;
-        nbOfMissiles = 2;
+        nbOfMissiles = 0;
         timeLeftBeforeCanShoot = 0;
+        timeLeftInTripleShotMode = 0;
         bullets = new List<GameObject>();
         missiles = new List<GameObject>();
     }
@@ -53,6 +55,8 @@ public class ProjectileManager : MonoBehaviour
         }
         shootAction = InputSystem.actions.FindAction("Shoot");
         switchAmmoModeAction = InputSystem.actions.FindAction("SwitchAmmo");
+        gameManager.UpdateNbOfMissiles(nbOfMissiles);
+        gameManager.UpdateTripleShotTimeRemaining(timeLeftInTripleShotMode);
     }
 
     void Update()
@@ -73,6 +77,7 @@ public class ProjectileManager : MonoBehaviour
         if(timeLeftInTripleShotMode > 0)
         {
             timeLeftInTripleShotMode -= Time.deltaTime;
+            gameManager.UpdateTripleShotTimeRemaining(timeLeftInTripleShotMode);
         }
         else
         {
@@ -88,18 +93,19 @@ public class ProjectileManager : MonoBehaviour
         {
             if (bulletMode)
             {
-                ShootProjectile(ProjectileType.BULLET, transform.forward);
+                ShootProjectile(ProjectileType.BULLET, transform.root.forward);
                 if (tripleShotMode)
                 {
-                    ShootProjectile(ProjectileType.BULLET, transform.forward + transform.right * 0.5f);
-                    ShootProjectile(ProjectileType.BULLET, transform.forward - transform.right * 0.5f);
+                    ShootProjectile(ProjectileType.BULLET, transform.root.forward * 0.5f + transform.root.right * 0.5f);
+                    ShootProjectile(ProjectileType.BULLET, transform.root.forward * 0.5f - transform.root.right * 0.5f);
                 }
                 timeLeftBeforeCanShoot = TIME_BETWEEN_BULLETS;
             }
             else if(missileMode && nbOfMissiles > 0)
             {
-                ShootProjectile(ProjectileType.MISSILE, transform.forward);
+                ShootProjectile(ProjectileType.MISSILE, transform.root.forward);
                 timeLeftBeforeCanShoot = TIME_BETWEEN_MISSILES;
+                gameManager.UpdateNbOfMissiles(nbOfMissiles);
             }
         }
     }
@@ -137,6 +143,7 @@ public class ProjectileManager : MonoBehaviour
     public void GainMissiles(int missilesGained)
     {
         nbOfMissiles += missilesGained;
+        gameManager.UpdateNbOfMissiles(nbOfMissiles);
     }
 
     public void ActivateTripleShotMode(float amountOfTime)

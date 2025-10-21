@@ -795,8 +795,8 @@ GameObject:
   - component: {fileID: 4442832392600964648}
   - component: {fileID: 6939256232251524499}
   - component: {fileID: 981298407677099697}
-  - component: {fileID: -3980035749645673801}
   - component: {fileID: 4023354542312874777}
+  - component: {fileID: 696541970780740121}
   m_Layer: 7
   m_Name: SpaceMarine
   m_TagString: Player
@@ -883,20 +883,6 @@ CapsuleCollider:
   m_Height: 10.23
   m_Direction: 1
   m_Center: {x: 0, y: 5.69, z: 0}
---- !u!114 &-3980035749645673801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102188228426766853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e8444b54118a94d95ab359b610ecc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPoints: 5
-  invincibilityPeriod: 0.5
 --- !u!114 &4023354542312874777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,6 +897,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbOfMissilesGainedFromCollectible: 5
   amountOfTimeTripleShotCollectible: 10
+--- !u!114 &696541970780740121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102188228426766853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8444b54118a94d95ab359b610ecc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  healthPoints: 5
+  invincibilityPeriod: 0.5
 --- !u!1 &1182651417351162269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f298181f4204d846b14d31611f4e5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   regularBulletPrefab: {fileID: 8878293879376123333, guid: 6b3fa57daa022e34cb955f11a7d7339c,
     type: 3}
   missilePrefab: {fileID: 2525046337550401708, guid: a786bd07750c5384f844eaf9aa93f6b5,

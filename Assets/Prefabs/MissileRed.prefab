@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8027253185720472673}
-  - component: {fileID: 4106151635539143875}
   - component: {fileID: 280434400047993643}
   - component: {fileID: 8096287367340825683}
+  - component: {fileID: 9018185870081428339}
+  - component: {fileID: 8078034517476364238}
   m_Layer: 0
   m_Name: MissileRed
   m_TagString: Untagged
@@ -36,27 +37,6 @@ Transform:
   - {fileID: 519724431890033812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4106151635539143875
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2525046337550401708}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 47.56
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &280434400047993643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96,6 +76,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3e26ed0a49ea34c9aee2adc3363370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  isMissile: 1
+--- !u!65 &9018185870081428339
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525046337550401708}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.32, y: 1.32, z: 2.37}
+  m_Center: {x: 0, y: 0, z: -0.46}
+--- !u!114 &8078034517476364238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525046337550401708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1301e905ba6774ea2e68598de6aa70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 6239905323369071019}
+  missileBody: {fileID: 7834153207437527719}
 --- !u!1 &5098802001916229027
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,11 +126,11 @@ GameObject:
   - component: {fileID: 633796062012357066}
   m_Layer: 0
   m_Name: Explosion
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &519724431890033812
 Transform:
   m_ObjectHideFlags: 0
@@ -202,7 +219,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -3809,7 +3826,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     type: 0
     collisionMode: 0
@@ -3818,7 +3835,7 @@ ParticleSystem:
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     m_Planes:
-    - {fileID: 0}
+    - {fileID: 616056485553046867, guid: ebdb77b9bebedbe6eb0742bed57d3ddc, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -5171,7 +5188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6202933318056339559
 Transform:
   m_ObjectHideFlags: 0
