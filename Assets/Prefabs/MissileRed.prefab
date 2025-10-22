@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 519724431890033812}
   - component: {fileID: 6239905323369071019}
   - component: {fileID: 633796062012357066}
+  - component: {fileID: 1532827631809477189}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Projectile
@@ -3826,7 +3827,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 0
     collisionMode: 0
@@ -3897,7 +3898,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4002,14 +4003,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.0001
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4020,9 +4021,9 @@ ParticleSystem:
     enter: 0
     exit: 0
     colliderQueryMode: 0
-    radiusScale: 1
+    radiusScale: 6
     primitives:
-    - {fileID: 0}
+    - {fileID: 616056485553046867, guid: ebdb77b9bebedbe6eb0742bed57d3ddc, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -5052,6 +5053,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &1532827631809477189
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098802001916229027}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6197041321311186526
 GameObject:
   m_ObjectHideFlags: 0

@@ -84,11 +84,12 @@ public class ProjectileManager : MonoBehaviour
         if (timeLeftInTripleShotMode > 0)
         {
             timeLeftInTripleShotMode -= Time.deltaTime;
-            gameManager.UpdateTripleShotTimeRemaining(timeLeftInTripleShotMode);
+            gameManager.UpdateTripleShotTimeRemaining(Mathf.Round(timeLeftInTripleShotMode));
         }
         else
         {
             tripleShotMode = false;
+            timeLeftInTripleShotMode = 0;
         }
 
         if (timeLeftBeforeCanShoot > 0)

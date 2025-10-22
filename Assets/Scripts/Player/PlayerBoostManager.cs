@@ -7,13 +7,13 @@ public class PlayerBoostManager : MonoBehaviour
     [SerializeField] private AudioClip pickupSound;
 
     private ProjectileManager projectileManager;
-    private HealthPointsManager healthPointsManager;
+    private PlayerHealthPointsManager healthPointsManager;
     private AudioSource audioSource;
 
     void Start()
     {
         projectileManager = GetComponentInChildren<ProjectileManager>();
-        healthPointsManager = GetComponent<HealthPointsManager>();
+        healthPointsManager = GetComponent<PlayerHealthPointsManager>();
         audioSource = GetComponent<AudioSource>();
     }
 

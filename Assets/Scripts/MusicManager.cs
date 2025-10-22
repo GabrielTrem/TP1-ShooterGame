@@ -3,6 +3,7 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioClip backgroundMusic;
+    [SerializeField] private AudioClip victoryMusic;
     private AudioSource audioSource;
 
     void Start()

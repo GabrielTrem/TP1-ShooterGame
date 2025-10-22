@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HealthPointsManager : MonoBehaviour
+public class PlayerHealthPointsManager : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private int healthPoints = 5;

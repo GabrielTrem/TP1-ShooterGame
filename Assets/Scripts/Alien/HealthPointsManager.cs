@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlienHealthPointsManager : MonoBehaviour
+public class HealthPointsManager : MonoBehaviour
 {
     [SerializeField] private int healthPoints = 1;
     [SerializeField] private AudioClip alienDeathSound;
@@ -15,6 +15,14 @@ public class AlienHealthPointsManager : MonoBehaviour
         isDead = false;
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Projectile"))
+        {
+            TakeDamage(other.gameObject.GetComponentInParent<Projectile>().GetDamage());
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isDead)
@@ -22,12 +30,9 @@ public class AlienHealthPointsManager : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Projectile"))
+        if (other.gameObject.CompareTag("Projectile"))
         {
-            if (other != null && other.gameObject != null)
-            {
-                TakeDamage(other.gameObject.GetComponent<Projectile>().GetDamage());
-            }
+            TakeDamage(other.gameObject.GetComponentInParent<Projectile>().GetDamage());
         }
 
         if (other.CompareTag("Player") && gameObject.CompareTag("Alien"))
