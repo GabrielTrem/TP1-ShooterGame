@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed;
 
     private float gravity = 30f;
-    private float jumpSpeed = 18f;
+    private float jumpSpeed = 23f;
     private float vecticalMovement = 0f;
 
     void Start()

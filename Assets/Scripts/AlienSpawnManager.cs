@@ -5,18 +5,19 @@ public class AlienSpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject alienPrefab;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private int poolSize = 20;
+    [SerializeField] private int maxAlienInGame = 50;
     [SerializeField] private int maxAliensSpawned = 500;
     [SerializeField] private float timeBetweenSpawns = 2f;
+    [SerializeField] private GameManager gameManager;
 
     private GameObject[] aliensPool;
     private int totalSpawned = 0;
 
     void Start()
     {
-        aliensPool = new GameObject[poolSize];
+        aliensPool = new GameObject[maxAlienInGame];
 
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < maxAlienInGame; i++)
         {
             aliensPool[i] = Instantiate(alienPrefab);
             aliensPool[i].SetActive(false);
@@ -48,7 +49,14 @@ public class AlienSpawnManager : MonoBehaviour
                     aliensPool[i].SetActive(true);
                     totalSpawned++;
                 }
-
+                else
+                {
+                    gameManager.Win();
+                    foreach (var alien in aliensPool)
+                    {
+                        alien.SetActive(false);
+                    }
+                }
                 return;
             }
         }

@@ -8,12 +8,9 @@ public class Projectile : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        if (isMissile)
-        {
-            gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-        }
-        else
-        {
+        Console.WriteLine("COLLIDED");
+        if (!isMissile)
+        {   
             gameObject.SetActive(false);
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 335194108402529568}
   - component: {fileID: 2354591964085046197}
   - component: {fileID: -7129458348510809182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -67.45, y: -63.09, z: -28.71}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10.3915, y: 10.3915, z: 10.3915}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 10
+  alienDeathSound: {fileID: 0}

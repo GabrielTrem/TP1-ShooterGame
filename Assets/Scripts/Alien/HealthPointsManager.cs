@@ -4,15 +4,10 @@ public class AlienHealthPointsManager : MonoBehaviour
 {
     [SerializeField] private int healthPoints = 1;
     [SerializeField] private AudioClip alienDeathSound;
+    [SerializeField] private CollectibleManager collectibleManager;
 
     private int currentHealthPoints;
-    private AlienController alienController;
     private bool isDead = false;
-
-    void Start()
-    {
-        alienController = GetComponent<AlienController>();
-    }
 
     void OnEnable()
     {
@@ -27,16 +22,15 @@ public class AlienHealthPointsManager : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Projectile"))
         {
             if (other != null && other.gameObject != null)
             {
-                other.gameObject.SetActive(false);
-                TakeDamage(1);
+                TakeDamage(other.gameObject.GetComponent<Projectile>().GetDamage());
             }
         }
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameObject.CompareTag("Alien"))
         {
             TakeDamage(healthPoints);
         }
@@ -68,14 +62,10 @@ public class AlienHealthPointsManager : MonoBehaviour
                     AudioSource.PlayClipAtPoint(alienDeathSound, transform.position, 10.0f);
                 }
             }
-
-            if (alienController != null)
+            gameObject.SetActive(false);
+            if (CompareTag("Alien"))
             {
-                alienController.Die();
-            }
-            else
-            {
-                gameObject.SetActive(false);
+                collectibleManager.DropCollectible(transform.position);
             }
         }
     }

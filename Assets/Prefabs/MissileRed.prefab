@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8027253185720472673}
   - component: {fileID: 280434400047993643}
-  - component: {fileID: 8096287367340825683}
   - component: {fileID: 9018185870081428339}
   - component: {fileID: 8078034517476364238}
+  - component: {fileID: 5752824615502800340}
   m_Layer: 0
   m_Name: MissileRed
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,20 +64,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &8096287367340825683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2525046337550401708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3e26ed0a49ea34c9aee2adc3363370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  isMissile: 1
 --- !u!65 &9018185870081428339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,6 +99,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 6239905323369071019}
   missileBody: {fileID: 7834153207437527719}
+--- !u!114 &5752824615502800340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525046337550401708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d08f06634cbf24e85d1d5b3d990225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  isMissile: 1
 --- !u!1 &5098802001916229027
 GameObject:
   m_ObjectHideFlags: 0

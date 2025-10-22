@@ -54,7 +54,7 @@ public class HealthPointsManager : MonoBehaviour
         {
             if (!isInvincible && characterController.isGrounded)
             {
-                //LoseHealthPoint();
+                LoseHealthPoint();
             }
         }
     }

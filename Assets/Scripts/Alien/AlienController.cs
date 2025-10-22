@@ -36,9 +36,4 @@ public class AlienController : MonoBehaviour
             navMeshAgent.enabled = true;
         }
     }
-
-    public void Die()
-    {
-        gameObject.SetActive(false);
-    }
 }

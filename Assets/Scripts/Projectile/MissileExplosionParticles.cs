@@ -22,6 +22,7 @@ public class MissileExplosion : MonoBehaviour
     {
         if (!isExploding)
         {
+            gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             isExploding = true;
             missileBody.SetActive(false);
             StartCoroutine(PlayExplosionAndDisable());

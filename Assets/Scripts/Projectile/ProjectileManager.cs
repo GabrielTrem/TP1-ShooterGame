@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,21 +100,15 @@ public class ProjectileManager : MonoBehaviour
         {
             if (bulletMode)
             {
-                if (tripleShotMode)
-                {
-                    if (audioSource != null && tripleShotSound != null)
-                    {
-                        audioSource.PlayOneShot(tripleShotSound, 1.0f);
-                    }
-
-                    ShootProjectile(ProjectileType.BULLET, transform.forward);
-                    ShootProjectile(ProjectileType.BULLET, transform.forward + transform.right * 0.5f);
-                    ShootProjectile(ProjectileType.BULLET, transform.forward - transform.right * 0.5f);
-                ShootProjectile(ProjectileType.BULLET, transform.root.forward);
+                ShootProjectile(ProjectileType.BULLET, transform.forward);
                 if (tripleShotMode)
                 {
                     ShootProjectile(ProjectileType.BULLET, transform.root.forward * 0.5f + transform.root.right * 0.5f);
                     ShootProjectile(ProjectileType.BULLET, transform.root.forward * 0.5f - transform.root.right * 0.5f);
+                    if (audioSource != null && tripleShotSound != null)
+                    {
+                        audioSource.PlayOneShot(tripleShotSound, 1.0f);
+                    }
                 }
                 else
                 {
